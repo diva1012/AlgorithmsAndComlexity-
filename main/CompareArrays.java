@@ -8,8 +8,8 @@ public class CompareArrays {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		int[] one = {2,5,5,7,7,8};
-		int[] two = {2,5,5,5,7,7,8,9,10,11};
+		int[] one = {2,3,4,5,5,5,5,5,5,5,5,5,5,5,7,7,8,9,9};
+		int[] two = {2,5,5,7,7,7,7,8,9,9,10,11};
 		
 		List<Integer> result = new ArrayList<Integer>();
 		
@@ -21,7 +21,7 @@ public class CompareArrays {
 	public static void getCommonItems (int[] arrayOne, int[] arrayTwo, int arrayOneLow, int arrayTwoLow, List<Integer> result){
 		
 		// Check A1 length
-		if (!(arrayTwoLow < arrayOne.length)) {
+		if (!(arrayOneLow < arrayOne.length)) {
 			System.out.println("EXIT A1 Lenght:" + arrayTwoLow);
 			System.out.println(result);
 		}
@@ -29,18 +29,22 @@ public class CompareArrays {
 		// Check A2 length
 		else if (!(arrayTwoLow < arrayTwo.length)) {
 			System.out.println("EXIT A2 lengh:" + arrayTwoLow );
-			getCommonItems(arrayOne, arrayTwo, arrayOneLow + 1, arrayTwoLow, result);
+			getCommonItems(arrayOne, arrayTwo, arrayOneLow + 1, arrayTwoLow + 1, result);
 		}
 		
+		// Check if the current numbers in both arrays are common
 		else if (arrayOne[arrayOneLow] == arrayTwo[arrayTwoLow]) {
-			
 			System.out.println("COMMON " + arrayOneLow +  " " + arrayTwoLow);
-			
 			result.add(arrayOne[arrayOneLow]);
 			getCommonItems(arrayOne, arrayTwo, arrayOneLow + 1, arrayTwoLow + 1, result);
 		
-		} else if (arrayOne[arrayOneLow] > arrayTwo[arrayTwoLow])
+		// If arrayOne number is bigger than arrayTwo number go to next arrayTwo number
+		} else if (arrayOne[arrayOneLow] > arrayTwo[arrayTwoLow]) {
 			getCommonItems(arrayOne, arrayTwo, arrayOneLow, arrayTwoLow + 1, result);		
+		
+		} else 
+			// in all other cases go to the next arrayOne element so you can arrive to the end of the algorithm at some point
+			getCommonItems(arrayOne, arrayTwo, arrayOneLow + 1, arrayTwoLow, result);	
 
 	}
 }
