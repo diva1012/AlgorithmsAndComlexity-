@@ -1,10 +1,10 @@
 package main;
 
-public class Assingment {
+public class Assingment1_3 {
 
 	public static void main(String[] args) {
 
-		int[] array = {-11, -3, -1, 0, 4, 6, 7, 8, 10, 12, 15, 16, 17}; 
+		int[] array = {-11, -3, -1, 0, 3, 5, 7, 8, 10, 12, 15, 16, 17}; 
 		
 		System.out.println("Array length: " + array.length);
 		System.out.print(findElement(array, 0, array.length - 1));
@@ -23,10 +23,12 @@ public class Assingment {
 		System.out.println();
 		
 		
-		if( end - start <= 0 )
-	        return false;
+		if( end - start < 0 ) {
+			System.out.println("No elements left");
+			return false;
+		}
 		
-		int mid = (start + end) / 2 ;
+		int mid = start + (end - start) / 2;
 		
 		if (array[mid] == mid) {
 			System.out.println(mid + " = " + array[mid]);
@@ -36,12 +38,12 @@ public class Assingment {
 		else if (array[mid] < mid) {
 			// check right side
 			System.out.println("CHECK RIGHT");
-			return findElement(array, mid, end);
+			return findElement(array, mid + 1, end);
 			
 		} else { 
 			// check left side
 			System.out.println("CHECK LEFT");
-			return findElement(array, start, mid );
+			return findElement(array, start, mid -1);
 		}
 	}
 
